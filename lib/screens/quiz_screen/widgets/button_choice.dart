@@ -1,14 +1,7 @@
 //Feel free to use the code in your projects but do not forget to give me the credits adding my app (Flutter Animation Gallery) where you are gonna use it.
 
-//------------------------------------------
-
-import 'dart:developer';
-
-import 'package:flutter/cupertino.dart';
+//--------------------------
 import 'package:flutter/material.dart';
-import 'package:word_test/blocs/blocs_export.dart';
-import 'package:word_test/screens/quiz_screen/quiz_screen.dart';
-
 class ButtonChoice extends StatefulWidget {
   final double width;
   final double height;
@@ -22,6 +15,7 @@ class ButtonChoice extends StatefulWidget {
   });
 
   @override
+  // ignore: library_private_types_in_public_api
   _ButtonChoiceState createState() => _ButtonChoiceState();
 }
 

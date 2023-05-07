@@ -15,11 +15,4 @@ class ChooseQuizLevel extends AppBlocEvent{
   List<Object> get props => [quizLevel];
 }
 
-class SwitchThemeApp extends AppBlocEvent{
-  final bool switchTheme;
-  const SwitchThemeApp({required this.switchTheme});
 
-  @override
-  List<Object> get props => [switchTheme];
-
-}

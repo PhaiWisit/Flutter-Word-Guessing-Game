@@ -1,13 +1,7 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
-import 'package:word_test/screens/about_screen/about_screen.dart';
-import 'package:word_test/screens/home_screen/widgets/button_daily_quiz.dart';
-import 'package:word_test/screens/home_screen/widgets/button_quiz.dart';
-import 'package:word_test/screens/home_screen/widgets/popup_menu.dart';
-import 'package:word_test/screens/setting_screen/setting_screen.dart';
+import 'package:word_test/screens/home_screen/widgets/card_daily_quiz.dart';
+import 'package:word_test/screens/home_screen/widgets/card_quiz.dart';
+import 'package:word_test/screens/home_screen/widgets/container_head.dart';
 
 class HomeScreen extends StatelessWidget {
   static const id = 'home_screen';
@@ -16,85 +10,74 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Bear Words'),
-        actions:const [
-           PopupMenu()
-        ],
-        centerTitle: true,
-      ),
-      body: SingleChildScrollView(
-        child: SizedBox(
-          width: MediaQuery.of(context).size.width,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              const Icon(
-                Icons.abc,
-                size: 150,
-              ),
-              const Text(
-                'แบบทดสอบ',
-                style: TextStyle(fontSize: 30),
-              ),
-              const SizedBox(
-                height: 25,
-              ),
-              ButtonDailyQuiz(width: 350, height: 150),
-              const SizedBox(
-                height: 50,
-              ),
-              Container(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
-                    ButtonQuiz(
-                      width: 150,
-                      height: 150,
-                      level: 1,
-                      icon: Icons.one_k_outlined,
-                    ),
-                    SizedBox(
-                      width: 50,
-                    ),
-                    ButtonQuiz(
-                      width: 150,
-                      height: 150,
-                      level: 2,
-                      icon: Icons.two_k_outlined,
-                    ),
-                  ],
+    const spaceBetweenLevel = 10.0;
+
+    return SafeArea(
+      child: Scaffold(
+        body: SingleChildScrollView(
+          child: Stack(
+            children: [
+              const ContainerHead(),
+              Center(
+                child: SizedBox(
+                  width: MediaQuery.of(context).size.width * 0.8,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      Container(
+                        height: 230,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: const [
+                          // Text(
+                          //   '    User Name',
+                          //   style: TextStyle(fontSize: 30),
+                          // ),
+                        ],
+                      ),
+                      const SizedBox(height: spaceBetweenLevel),
+                      const CardDailyQuiz(),
+                      const SizedBox(height: 20),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: const [
+                          Text('All Quiz'),
+                        ],
+                      ),
+                      const Divider(
+                        thickness: 2,
+                      ),
+                      const SizedBox(height: 10),
+                      const CardQuiz(
+                        level: 1,
+                        icon: Icons.looks_one,
+                      ),
+                      const SizedBox(height: spaceBetweenLevel),
+                      const CardQuiz(
+                        level: 2,
+                        icon: Icons.looks_two,
+                      ),
+                      const SizedBox(height: spaceBetweenLevel),
+                      const CardQuiz(
+                        level: 3,
+                        icon: Icons.looks_3,
+                      ),
+                      const SizedBox(height: spaceBetweenLevel),
+                      const CardQuiz(
+                        level: 4,
+                        icon: Icons.looks_4,
+                      ),
+                      const SizedBox(height: spaceBetweenLevel),
+                      const CardQuiz(
+                        level: 5,
+                        icon: Icons.looks_5,
+                      ),
+                      const SizedBox(height: 50),
+                    ],
+                  ),
                 ),
-              ),
-              const SizedBox(
-                height: 50,
-              ),
-              Container(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
-                    ButtonQuiz(
-                      width: 150,
-                      height: 150,
-                      level: 3,
-                      icon: Icons.three_k_outlined,
-                    ),
-                    SizedBox(
-                      width: 50,
-                    ),
-                    ButtonQuiz(
-                      width: 150,
-                      height: 150,
-                      level: 4,
-                      icon: Icons.four_k_outlined,
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(
-                height: 50,
               ),
             ],
           ),

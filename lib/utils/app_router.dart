@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:word_test/screens/about_screen/about_screen.dart';
 import 'package:word_test/screens/home_screen/home_screen.dart';
+import 'package:word_test/screens/list_screen/list_screen.dart';
 import 'package:word_test/screens/quiz_screen/quiz_screen.dart';
 import 'package:word_test/screens/setting_screen/setting_screen.dart';
 
@@ -23,6 +24,10 @@ class AppRouter {
       case AboutScreen.id:
         return MaterialPageRoute(
           builder: (_) =>  const AboutScreen(),
+        );
+      case ListScreen.id:
+        return MaterialPageRoute(
+          builder: (_) =>  const ListScreen(),
         );
       default :
         return null;  

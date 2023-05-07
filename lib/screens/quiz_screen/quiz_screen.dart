@@ -1,4 +1,3 @@
-import 'package:flip_card/flip_card.dart';
 import 'package:flutter/material.dart';
 import 'package:word_test/blocs/blocs_export.dart';
 import 'package:word_test/screens/quiz_screen/widgets/button_choice.dart';
@@ -29,9 +28,9 @@ class QuizScreen extends StatelessWidget {
                 children: <Widget>[
                   Text(
                     'Level ${state.quizLevel}',
-                    style: TextStyle(fontSize: 30),
+                    style: const TextStyle(fontSize: 30),
                   ),
-                  FlipCardProvider(),
+                  const FlipCardProvider(),
                   const SizedBox(
                     height: 50,
                   ),
@@ -62,7 +61,7 @@ class QuizScreen extends StatelessWidget {
                       ButtonChoice(
                         width: 180,
                         height: 100,
-                        title: 'choice 1',
+                        title: 'choice 3',
                       ),
                       SizedBox(
                         width: 20,
@@ -70,7 +69,7 @@ class QuizScreen extends StatelessWidget {
                       ButtonChoice(
                         width: 180,
                         height: 100,
-                        title: 'choice 2',
+                        title: 'choice 4',
                       ),
                     ],
                   )

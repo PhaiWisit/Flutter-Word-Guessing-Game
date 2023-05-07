@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:word_test/blocs/app_bloc/app_bloc_bloc.dart';
 import 'package:word_test/screens/home_screen/home_screen.dart';
+import 'package:word_test/screens/setting_screen/setting_screen.dart';
 import 'package:word_test/utils/app_router.dart';
 import 'package:word_test/utils/app_theme.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
@@ -30,24 +30,42 @@ main() async {
 class MyApp extends StatelessWidget {
   final AppRouter appRouter;
 
-  MyApp({super.key, required this.appRouter});
+  const MyApp({super.key, required this.appRouter});
 
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (context) => AppBlocBloc()),
-        // BlocProvider(create: (context) => SwitchBloc()),
+        BlocProvider(create: (context) => SettingBloc()),
       ],
-      child: BlocBuilder<AppBlocBloc, AppBlocState>(
+      child: BlocBuilder<SettingBloc, SettingState>(
         builder: (context, state) {
+          ThemeData? themeData = AppThemes.appThemeData[AppTheme.defaultTheme];
+
+          switch (state.themeSelected) {
+            case 1:
+              themeData = AppThemes.appThemeData[AppTheme.defaultTheme];
+              break;
+            case 2:
+              themeData = AppThemes.appThemeData[AppTheme.darkTheme];
+              break;
+            case 3:
+              themeData = AppThemes.appThemeData[AppTheme.colorFulTheme];
+              break;
+            case 4:
+              themeData = AppThemes.appThemeData[AppTheme.defaultTheme];
+              break;
+            default:
+              themeData = AppThemes.appThemeData[AppTheme.defaultTheme];
+              break;
+          }
           return MaterialApp(
             title: 'Flutter Demo',
             debugShowCheckedModeBanner: false,
-            theme: state.switchTheme == false
-                ? AppThemes.appThemeData[AppTheme.lightTheme]
-                : AppThemes.appThemeData[AppTheme.darkTheme],
+            theme: themeData,
             home: const HomeScreen(),
+            // home: const SettingScreen(),
             onGenerateRoute: appRouter.onGenerateRoute,
           );
         },
