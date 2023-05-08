@@ -9,7 +9,7 @@ class SettingSound extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      height: 150,
+      height: 130,
       decoration: const BoxDecoration(
         borderRadius: BorderRadius.all(
           Radius.circular(5),
@@ -17,46 +17,40 @@ class SettingSound extends StatelessWidget {
         color: Colors.black12,
       ),
       child: Padding(
-        padding: EdgeInsets.all(10),
+        padding: const EdgeInsets.all(10),
         child: Column(
           children: [
-            Container(
-              width: double.infinity,
-              height: 60,
-              // color: Colors.amber,
-              child: Row(
-                children: [
-                  const SizedBox(width: 10),
-                  const Text('Music Sound'),
-                  const SizedBox(
-                    width: 20,
-                  ),
-                  const Icon(Icons.volume_up_outlined),
-                  Slider(
-                    value: 0,
-                    onChanged: (value) {},
-                  )
-                ],
-              ),
+            Row(
+              children: [
+                const SizedBox(width: 4),
+                Text(
+                  'Music Sound',
+                  style: Theme.of(context).textTheme.titleSmall,
+                ),
+                
+                const Icon(Icons.volume_up_outlined),
+                Slider(
+                  value: 0,
+                  onChanged: (value) {},
+                )
+              ],
             ),
             const SizedBox(height: 10),
-            Container(
-              width: double.infinity,
-              height: 60,
-              child: Row(
-                children: [
-                  const SizedBox(width: 10),
-                  const Text('Effect Sound'),
-                  const SizedBox(
-                    width: 20,
-                  ),
-                  const Icon(Icons.volume_up_outlined),
-                  Slider(
-                    value: 0,
-                    onChanged: (value) {},
-                  )
-                ],
-              ),
+            Row(
+              children: [
+                const SizedBox(width: 4),
+                Text(
+                  'Effect Sound',
+                  style: Theme.of(context).textTheme.titleSmall,
+                ),
+                
+                const Icon(Icons.volume_up_outlined),
+                Slider(
+                  
+                  value: 0,
+                  onChanged: (value) {},
+                )
+              ],
             ),
           ],
         ),

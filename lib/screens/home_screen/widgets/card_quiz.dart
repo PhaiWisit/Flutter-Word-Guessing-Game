@@ -39,8 +39,8 @@ class CardQuiz extends StatelessWidget {
     return Container(
       decoration: const BoxDecoration(boxShadow: [
         BoxShadow(
-          color: Colors.black45,
-          blurRadius: 10.0,
+          color: Colors.black12,
+          blurRadius: 5.0,
         ),
       ]),
       child: Card(
@@ -87,15 +87,13 @@ class CardQuiz extends StatelessWidget {
                               Container(height: 15),
                               Text(
                                 "Level $level",
-                                style: const TextStyle(
-                                  fontSize: 20,
-                                ),
+                                style: Theme.of(context).textTheme.titleLarge,
+                                
                               ),
                               Container(height: 5),
                               Text("แบบทดสอบระดับ$levelText",
-                                  style: const TextStyle(
-                                    fontSize: 18,
-                                  )),
+                                  style: Theme.of(context).textTheme.titleSmall
+                                  ),
                               // Container(height: 10),
                               // const Text(
                               //   'ทำแบบทดสอบรายวันของคุณโดยการสุ่มคำศัพท์ในแต่ละระดับมาเล่น',

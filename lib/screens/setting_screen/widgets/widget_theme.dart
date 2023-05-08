@@ -32,7 +32,7 @@ class WidgetTheme extends StatelessWidget {
                 Row(
                   children: [
                     const SizedBox(width: 5),
-                    Text(themeTitle),
+                    Text(themeTitle,style: Theme.of(context).textTheme.titleSmall,),
                   ],
                 ),
                 Row(

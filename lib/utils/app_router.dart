@@ -4,6 +4,7 @@ import 'package:word_test/screens/home_screen/home_screen.dart';
 import 'package:word_test/screens/list_screen/list_screen.dart';
 import 'package:word_test/screens/quiz_screen/quiz_screen.dart';
 import 'package:word_test/screens/setting_screen/setting_screen.dart';
+import 'package:word_test/screens/test_screen/test_screen.dart';
 
 
 class AppRouter {
@@ -28,6 +29,10 @@ class AppRouter {
       case ListScreen.id:
         return MaterialPageRoute(
           builder: (_) =>  const ListScreen(),
+        );
+      case TestScreen.id:
+        return MaterialPageRoute(
+          builder: (_) =>  const TestScreen(),
         );
       default :
         return null;  

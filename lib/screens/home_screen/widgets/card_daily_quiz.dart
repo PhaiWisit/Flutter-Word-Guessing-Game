@@ -48,19 +48,17 @@ class CardDailyQuiz extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Container(height: 5),
-                        const Text(
+                        Text(
                           "Daily Quiz",
-                          style: TextStyle(
-                            fontSize: 24,
-                          ),
+                          style: Theme.of(context).textTheme.titleLarge,
                         ),
                         Container(height: 5),
-                        const Text(
-                          "แบบทดสอบรายวันของคุณ",
+                        Text(
+                          "แบบทดสอบรายวันของคุณ",style: Theme.of(context).textTheme.titleMedium,
                         ),
                         Container(height: 10),
-                        const Text(
-                          'ทำแบบทดสอบรายวันของคุณโดยการสุ่มคำศัพท์ในแต่ละระดับมาเล่น',
+                        Text(
+                          'ทำแบบทดสอบรายวันของคุณโดยการสุ่มคำศัพท์ในแต่ละระดับมาเล่น',style: Theme.of(context).textTheme.titleSmall,
                           maxLines: 2,
                         ),
                         Row(
@@ -70,11 +68,11 @@ class CardDailyQuiz extends StatelessWidget {
                               onPressed: () {
                                 Navigator.of(context).pushNamed(QuizScreen.id);
                               },
-                              child: const SizedBox(
+                              child: SizedBox(
                                 width: 60,
                                 height: 40,
                                 child: Center(
-                                  child: Text('เริ่มเลย'),
+                                  child: Text('เริ่มเลย',style: Theme.of(context).textTheme.titleMedium,),
                                 ),
                               ),
                             ),

@@ -3,6 +3,7 @@ import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:word_test/screens/home_screen/home_screen.dart';
 import 'package:word_test/screens/setting_screen/setting_screen.dart';
+import 'package:word_test/screens/test_screen/test_screen.dart';
 import 'package:word_test/utils/app_router.dart';
 import 'package:word_test/utils/app_theme.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
@@ -54,7 +55,7 @@ class MyApp extends StatelessWidget {
               themeData = AppThemes.appThemeData[AppTheme.colorFulTheme];
               break;
             case 4:
-              themeData = AppThemes.appThemeData[AppTheme.defaultTheme];
+              themeData = AppThemes.appThemeData[AppTheme.cuteTheme];
               break;
             default:
               themeData = AppThemes.appThemeData[AppTheme.defaultTheme];

@@ -1,6 +1,8 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:word_test/screens/test_screen/test_screen.dart';
 import 'package:word_test/utils/app_images.dart';
+import '../../../blocs/blocs_export.dart';
 import '../../setting_screen/setting_screen.dart';
 
 class ContainerHead extends StatelessWidget {
@@ -18,26 +20,47 @@ class ContainerHead extends StatelessWidget {
       // color: Colors.green,
       child: Stack(
         children: [
-          Container(
-            height: widgetHeight,
-            width: double.infinity,
-            decoration: const BoxDecoration(
-              image: DecorationImage(
-                  image: ExactAssetImage(
-                    AppImages.englishBooks,
+          BlocBuilder<SettingBloc, SettingState>(
+            builder: (context, state) {
+              ImageProvider<Object> cover_image = ExactAssetImage(AppImages.coverDefault);
+              final int themeId = state.themeSelected;
+              
+              switch(themeId){
+                case 1: cover_image = const ExactAssetImage(AppImages.coverDefault);
+                break;
+                case 2: cover_image = const ExactAssetImage(AppImages.coverDark);
+                break;
+                case 3: cover_image = const ExactAssetImage(AppImages.coverColorFul);
+                break;
+                case 4: cover_image = const ExactAssetImage(AppImages.coverCute);
+                break;
+                default: cover_image = const ExactAssetImage(AppImages.coverDefault);
+                break;
+              }
+
+              return Container(
+                height: widgetHeight,
+                width: double.infinity,
+                decoration:  BoxDecoration(
+                  image: DecorationImage(
+                      image: cover_image,
+                      fit: BoxFit.fitWidth),
+                ),
+                child: BackdropFilter(
+                  filter: 
+                  // themeId == 1? ImageFilter.blur(sigmaX: 2.0, sigmaY: 2.0) : 
+                  ImageFilter.blur(sigmaX: 0.0, sigmaY: 0.0),
+                  child: Container(
+                    decoration:
+                        BoxDecoration(color: Colors.white.withOpacity(0.0)),
                   ),
-                  fit: BoxFit.cover),
-            ),
-            child: BackdropFilter(
-              filter: ImageFilter.blur(sigmaX: 3.0, sigmaY: 3.0),
-              child: Container(
-                decoration: BoxDecoration(color: Colors.white.withOpacity(0.0)),
-              ),
-            ),
-            // Image.asset(
-            //   AppImages.englishBooks,
-            //   fit: BoxFit.fitWidth,
-            // ),
+                ),
+                // Image.asset(
+                //   AppImages.englishBooks,
+                //   fit: BoxFit.fitWidth,
+                // ),
+              );
+            },
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
@@ -48,15 +71,21 @@ class ContainerHead extends StatelessWidget {
                 child: ElevatedButton(
                   style: const ButtonStyle(
                       backgroundColor: MaterialStatePropertyAll(Colors.amber)),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.of(context).pushNamed(TestScreen.id);
+                  },
                   child: Row(
-                    children: const [
-                      Icon(
-                        Icons.star,
+                    children: [
+                      const Icon(
+                        Icons.star_border,
                         size: 15,
+                        color: Colors.white,
                       ),
-                      SizedBox(width: 5),
-                      Text('RATE'),
+                      const SizedBox(width: 5),
+                      Text(
+                        'RATE',
+                        style: Theme.of(context).textTheme.titleSmall,
+                      ),
                     ],
                   ),
                 ),
@@ -86,7 +115,9 @@ class ContainerHead extends StatelessWidget {
                   },
                   icon: const Icon(
                     Icons.settings,
-                    shadows: <Shadow>[Shadow(color: Colors.black87, blurRadius: 5.0)],
+                    shadows: <Shadow>[
+                      Shadow(color: Colors.black87, blurRadius: 5.0)
+                    ],
                     size: 50,
                     // color: Color.fromARGB(255, 183, 37, 37),
                   ),

@@ -42,8 +42,8 @@ class HomeScreen extends StatelessWidget {
                       const SizedBox(height: 20),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.start,
-                        children: const [
-                          Text('All Quiz'),
+                        children:  [
+                          Text('All Quiz',style: Theme.of(context).textTheme.titleMedium,),
                         ],
                       ),
                       const Divider(
