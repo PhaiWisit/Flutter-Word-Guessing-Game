@@ -29,11 +29,11 @@ class CardDailyQuiz extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   const SizedBox(
-                    width: 100,
-                    height: 100,
+                    width: 70,
+                    height: 70,
                     child: Icon(
-                      Icons.ac_unit_sharp,
-                      size: 80,
+                      Icons.calendar_month_outlined,
+                      size: 70,
                     ),
                   ),
                   // Image.asset(
@@ -42,7 +42,7 @@ class CardDailyQuiz extends StatelessWidget {
                   //   width: 100,
                   //   fit: BoxFit.cover,
                   // ),
-                  Container(width: 20),
+                  // Container(width: 10),
                   Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -54,12 +54,14 @@ class CardDailyQuiz extends StatelessWidget {
                         ),
                         Container(height: 5),
                         Text(
-                          "แบบทดสอบรายวันของคุณ",style: Theme.of(context).textTheme.titleMedium,
+                          "แบบทดสอบรายวันของคุณ",
+                          style: Theme.of(context).textTheme.titleMedium,
                         ),
                         Container(height: 10),
                         Text(
-                          'ทำแบบทดสอบรายวันของคุณโดยการสุ่มคำศัพท์ในแต่ละระดับมาเล่น',style: Theme.of(context).textTheme.titleSmall,
-                          maxLines: 2,
+                          'ทำแบบทดสอบรายวันของคุณโดยการสุ่มคำศัพท์ในแต่ละระดับมาเล่น',
+                          style: Theme.of(context).textTheme.titleSmall,
+                          maxLines: 3,
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.end,
@@ -68,12 +70,9 @@ class CardDailyQuiz extends StatelessWidget {
                               onPressed: () {
                                 Navigator.of(context).pushNamed(QuizScreen.id);
                               },
-                              child: SizedBox(
-                                width: 60,
-                                height: 40,
-                                child: Center(
-                                  child: Text('เริ่มเลย',style: Theme.of(context).textTheme.titleMedium,),
-                                ),
+                              child: Text(
+                                'เริ่มเลย',
+                                style: Theme.of(context).textTheme.titleMedium,
                               ),
                             ),
                           ],

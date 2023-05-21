@@ -28,6 +28,7 @@ class AppThemes {
           // color: AppColors.default4,
           color: Color.fromARGB(255, 46, 46, 46),
         ),
+        
         iconButtonTheme: const IconButtonThemeData(
           style: ButtonStyle(
             iconColor: MaterialStatePropertyAll(
@@ -106,11 +107,11 @@ class AppThemes {
                 backgroundColor:
                     MaterialStateProperty.all(AppColors.colorFul5)))),
     AppTheme.cuteTheme: ThemeData(
+      
       primarySwatch: Colors.grey,
       primaryColor: Colors.black,
       brightness: Brightness.light,
       colorScheme: lightColorScheme,
-      // backgroundColor: const Color(0xFF212121),
       dividerColor: AppColors.cute1,
 
       textButtonTheme: TextButtonThemeData(

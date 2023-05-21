@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:word_test/screens/quiz_screen/quiz_screen.dart';
+import 'package:word_test/screens/setting_screen/setting_screen.dart';
 
 import '../../blocs/blocs_export.dart';
+import 'widgets/quiz_list.dart';
 
 class ListScreen extends StatelessWidget {
   static const id = 'list_screen';
@@ -12,7 +13,15 @@ class ListScreen extends StatelessWidget {
     final List<String> items = List<String>.generate(20, (i) => '$i');
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(),
+        appBar: AppBar(
+          title: Text(
+            'รายการแบบทดสอบ',
+            style: Theme.of(context).textTheme.titleLarge,
+          ),
+          actions: [IconButton(onPressed: () {
+            Navigator.of(context).pushNamed(SettingScreen.id);
+          }, icon: const Icon(Icons.settings))],
+        ),
         body: Stack(
           children: [
             Column(
@@ -24,14 +33,15 @@ class ListScreen extends StatelessWidget {
                 ),
                 Container(
                   decoration: const BoxDecoration(
-                      color: Colors.black54,
+                      color: Colors.black12,
                       borderRadius: BorderRadius.all(Radius.circular(20))),
                   width: MediaQuery.of(context).size.width * 0.85,
                   height: MediaQuery.of(context).size.height * 0.7,
-                  child: Row(
+                  child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
+                      const SizedBox(height: 10,),
                       SingleChildScrollView(
                         child: SizedBox(
                           width: MediaQuery.of(context).size.width * 0.80,
@@ -40,20 +50,8 @@ class ListScreen extends StatelessWidget {
                           child: ListView.builder(
                             itemCount: items.length,
                             itemBuilder: (context, index) {
-                              return ListTile(
-                                leading: CircleAvatar(
-                                  backgroundColor: const Color(0xff764abc),
-                                  child: Text(items[index]),
-                                ),
-                                title: Text('แบบทดสอบที่ ${items[index]}'),
-                                subtitle: Text(
-                                    'คำอธิบาย แบบทดสอบที่ ${items[index]}'),
-                                trailing: Checkbox(
-                                    onChanged: (value) {}, value: false),
-                                    onTap: () {
-                                      Navigator.of(context).pushNamed(QuizScreen.id);
-                                    },
-                              );
+                              int quizNumber = index + 1;
+                              return QuizList(quizNumber: quizNumber);
                             },
                           ),
                         ),
@@ -74,10 +72,14 @@ class ListScreen extends StatelessWidget {
                         borderRadius: BorderRadius.all(
                           Radius.circular(10),
                         ),
-                        color: Colors.grey),
+                        color: Color.fromARGB(255, 255, 221, 119)),
                     width: 160,
                     height: 50,
-                    child: Center(child: Text('Level $level')),
+                    child: Center(
+                        child: Text(
+                      'Level $level',
+                      style: Theme.of(context).textTheme.titleLarge,
+                    )),
                   );
                 },
               ),

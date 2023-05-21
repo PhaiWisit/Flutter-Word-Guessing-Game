@@ -22,19 +22,19 @@ class ContainerHead extends StatelessWidget {
         children: [
           BlocBuilder<SettingBloc, SettingState>(
             builder: (context, state) {
-              ImageProvider<Object> cover_image = ExactAssetImage(AppImages.coverDefault);
+              ImageProvider<Object> coverImage = const ExactAssetImage(AppImages.coverDefault);
               final int themeId = state.themeSelected;
               
               switch(themeId){
-                case 1: cover_image = const ExactAssetImage(AppImages.coverDefault);
+                case 1: coverImage = const ExactAssetImage(AppImages.coverDefault);
                 break;
-                case 2: cover_image = const ExactAssetImage(AppImages.coverDark);
+                case 2: coverImage = const ExactAssetImage(AppImages.coverDark);
                 break;
-                case 3: cover_image = const ExactAssetImage(AppImages.coverColorFul);
+                case 3: coverImage = const ExactAssetImage(AppImages.coverColorFul);
                 break;
-                case 4: cover_image = const ExactAssetImage(AppImages.coverCute);
+                case 4: coverImage = const ExactAssetImage(AppImages.coverCute);
                 break;
-                default: cover_image = const ExactAssetImage(AppImages.coverDefault);
+                default: coverImage = const ExactAssetImage(AppImages.coverDefault);
                 break;
               }
 
@@ -43,7 +43,7 @@ class ContainerHead extends StatelessWidget {
                 width: double.infinity,
                 decoration:  BoxDecoration(
                   image: DecorationImage(
-                      image: cover_image,
+                      image: coverImage,
                       fit: BoxFit.fitWidth),
                 ),
                 child: BackdropFilter(

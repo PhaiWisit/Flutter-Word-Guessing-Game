@@ -40,6 +40,8 @@ dependencies:
   flip_card: ^0.7.0
   hydrated_bloc: ^8.1.0
   path_provider: ^2.0.14
+  sqflite: ^2.2.8+4
+  intl: ^0.18.1
 
 dev_dependencies:
   flutter_test:
@@ -64,6 +66,7 @@ flutter:
   uses-material-design: true
   assets: 
     - assets/images/ 
+    - assets/databases/vocab.db
     
 
   # To add assets to your application, add an assets section, like this:

@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:word_test/screens/setting_screen/widgets/about_application.dart';
 import 'package:word_test/screens/setting_screen/widgets/setting_sound.dart';
 import 'package:word_test/screens/setting_screen/widgets/setting_theme.dart';
-import 'package:word_test/utils/app_colors.dart';
 import 'widgets/setting_notification.dart';
-import 'widgets/widget_theme.dart';
 
 class SettingScreen extends StatelessWidget {
   static const id = 'setting_screen';

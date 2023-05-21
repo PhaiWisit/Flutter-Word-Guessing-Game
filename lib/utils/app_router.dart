@@ -32,7 +32,7 @@ class AppRouter {
         );
       case TestScreen.id:
         return MaterialPageRoute(
-          builder: (_) =>  const TestScreen(),
+          builder: (_) =>   TestScreen(),
         );
       default :
         return null;  
