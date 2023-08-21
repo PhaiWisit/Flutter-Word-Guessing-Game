@@ -12,12 +12,12 @@ class ContainerHead extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    
     double widgetHeight = 300;
 
     return SizedBox(
       height: widgetHeight,
       width: double.infinity,
-      // color: Colors.green,
       child: Stack(
         children: [
           BlocBuilder<SettingBloc, SettingState>(
@@ -44,21 +44,16 @@ class ContainerHead extends StatelessWidget {
                 decoration:  BoxDecoration(
                   image: DecorationImage(
                       image: coverImage,
-                      fit: BoxFit.fitWidth),
+                      fit: BoxFit.fitHeight),
                 ),
                 child: BackdropFilter(
                   filter: 
-                  // themeId == 1? ImageFilter.blur(sigmaX: 2.0, sigmaY: 2.0) : 
                   ImageFilter.blur(sigmaX: 0.0, sigmaY: 0.0),
                   child: Container(
                     decoration:
                         BoxDecoration(color: Colors.white.withOpacity(0.0)),
                   ),
                 ),
-                // Image.asset(
-                //   AppImages.englishBooks,
-                //   fit: BoxFit.fitWidth,
-                // ),
               );
             },
           ),
@@ -66,6 +61,9 @@ class ContainerHead extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.end,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              ElevatedButton(onPressed: (){
+                Navigator.of(context).pushNamed(TestScreen.id);
+              }, child: Text('TEST')),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 10),
                 child: ElevatedButton(
@@ -90,19 +88,6 @@ class ContainerHead extends StatelessWidget {
                   ),
                 ),
               ),
-              // IconButton(
-              //   onPressed: () {
-              //     Navigator.of(context).pushNamed(AboutScreen.id);
-              //   },
-              //   splashColor: Colors.transparent,
-              //   highlightColor: Colors.transparent,
-              //   hoverColor: Colors.transparent,
-              //   icon: const Icon(
-              //     Icons.info_outline,
-              //     size: 30,
-              //     color: Color.fromARGB(255, 183, 37, 37),
-              //   ),
-              // ),
               SizedBox(
                 width: 70,
                 height: 50,
@@ -119,7 +104,6 @@ class ContainerHead extends StatelessWidget {
                       Shadow(color: Colors.black87, blurRadius: 5.0)
                     ],
                     size: 50,
-                    // color: Color.fromARGB(255, 183, 37, 37),
                   ),
                 ),
               ),

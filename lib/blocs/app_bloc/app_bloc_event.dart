@@ -7,12 +7,19 @@ abstract class AppBlocEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class ChooseQuizLevel extends AppBlocEvent{
-  final int quizLevel;
-  const ChooseQuizLevel({required this.quizLevel});
+class ChooseLevel extends AppBlocEvent{
+  final int level;
+  const ChooseLevel({required this.level});
   
   @override
-  List<Object> get props => [quizLevel];
+  List<Object> get props => [level];
 }
 
+class ChooseQuiz extends AppBlocEvent{
+  final int quiz;
+  const ChooseQuiz({required this.quiz});
+  
+  @override
+  List<Object> get props => [quiz];
+}
 

@@ -1,11 +1,8 @@
-
 import 'package:flutter/material.dart';
-
 class SettingNotification extends StatelessWidget {
   const SettingNotification({
     super.key,
   });
-
   @override
   Widget build(BuildContext context) {
     return Container(

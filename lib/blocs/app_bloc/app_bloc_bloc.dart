@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:equatable/equatable.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 
@@ -5,9 +7,10 @@ part 'app_bloc_event.dart';
 part 'app_bloc_state.dart';
 
 class AppBlocBloc extends HydratedBloc<AppBlocEvent, AppBlocState> {
-  AppBlocBloc() : super(const AppBlocState(quizLevel: 0)) {
+  AppBlocBloc() : super(const AppBlocState()) {
     on<AppBlocEvent>((event, emit) {});
-    on<ChooseQuizLevel>(_onChooseQuizLevel);
+    on<ChooseLevel>(_onChooseLevel);
+    on<ChooseQuiz>(_onChooseQuiz);
   }
 
   @override
@@ -20,8 +23,15 @@ class AppBlocBloc extends HydratedBloc<AppBlocEvent, AppBlocState> {
     return state.toMap();
   }
 
-  void _onChooseQuizLevel(ChooseQuizLevel event, Emitter<AppBlocState> emit) {
-    final quizLevel = event.quizLevel;
-    emit(AppBlocState(quizLevel: quizLevel));
+  void _onChooseLevel(ChooseLevel event, Emitter<AppBlocState> emit) {
+    final level = event.level;
+    final state = this.state;
+    emit(AppBlocState(level: level, quiz: state.quiz));
+  }
+  void _onChooseQuiz(ChooseQuiz event, Emitter<AppBlocState> emit) {
+    final quiz = event.quiz;
+    final state = this.state;
+    log(quiz.toString());
+    emit(AppBlocState(level: state.level, quiz: quiz));
   }
 }

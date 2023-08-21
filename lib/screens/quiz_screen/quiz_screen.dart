@@ -1,114 +1,123 @@
 import 'package:flutter/material.dart';
-import 'package:word_test/blocs/blocs_export.dart';
-import 'package:word_test/screens/quiz_screen/widgets/flip_card.dart';
-
-import '../setting_screen/setting_screen.dart';
+import 'package:word_test/models/quiz_model.dart';
+import 'package:word_test/screens/setting_screen/setting_screen.dart';
+import '../../blocs/blocs_export.dart';
+import 'widgets/quiz_list.dart';
 
 class QuizScreen extends StatelessWidget {
-  static const id = 'quiz_screen';
-
-  const QuizScreen({
-    super.key,
-  });
+  static const id = 'list_screen';
+  const QuizScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('รายการแบบทดสอบ'),
-        centerTitle: true,
-        actions: [
-          IconButton(
-              onPressed: () {
-                Navigator.of(context).pushNamed(SettingScreen.id);
-              },
-              icon: const Icon(Icons.settings))
-        ],
-      ),
-      body: SingleChildScrollView(
-        child: SizedBox(
-          width: MediaQuery.of(context).size.width,
-          child: BlocBuilder<AppBlocBloc, AppBlocState>(
-            builder: (context, state) {
-              return Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
-                  const SizedBox(height: 20),
-                  Container(
-                    width: 180,
-                    height: 80,
-                    decoration: const BoxDecoration(
-                        borderRadius: BorderRadius.all(
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
+          title: Text(
+            'รายการแบบทดสอบ',
+            style: Theme.of(context).textTheme.titleLarge,
+          ),
+          actions: [
+            IconButton(
+                onPressed: () {
+                  Navigator.of(context).pushNamed(SettingScreen.id);
+                },
+                icon: const Icon(Icons.settings))
+          ],
+        ),
+        body: Stack(
+          children: [
+            Column(
+              children: [
+                SizedBox(
+                  width: double.infinity,
+                  height: MediaQuery.of(context).size.height * 0.1,
+                ),
+                Container(
+                  decoration: const BoxDecoration(
+                      color: Colors.black12,
+                      borderRadius: BorderRadius.all(Radius.circular(20))),
+                  width: MediaQuery.of(context).size.width * 0.85,
+                  height: MediaQuery.of(context).size.height * 0.7,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      SingleChildScrollView(
+                        child: SizedBox(
+                          width: MediaQuery.of(context).size.width * 0.80,
+                          height: MediaQuery.of(context).size.height * 0.65,
+                          child: BlocBuilder<AppBlocBloc, AppBlocState>(
+                            builder: (context, state) {
+                              int level = state.level;
+                              // log(level.toString());
+                              return BlocProvider(
+                                create: (context) =>
+                                    QuizBloc()..add(GetQuizList(level)),
+                                child: BlocBuilder<QuizBloc, QuizState>(
+                                  builder: (context, state) {
+                                    if (state is QuizLoadingState) {
+                                      return const Center(
+                                        child: CircularProgressIndicator(),
+                                      );
+                                    }
+                                    if (state is QuizErrorState) {
+                                      return const Center(
+                                          child: Text(
+                                              "Error when load quiz list."));
+                                    }
+                                    if (state is QuizLoadedState) {
+                                      List<QuizModel> quizList = state.quizList;
+                                      return ListView.builder(
+                                        itemCount: quizList.length,
+                                        itemBuilder: (context, index) {
+                                          return QuizList(
+                                            quiz: quizList[index],
+                                          );
+                                        },
+                                      );
+                                    }
+                                    return Container();
+                                  },
+                                ),
+                              );
+                            },
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+            Positioned(
+              top: MediaQuery.of(context).size.height * 0.1 - 25,
+              right: MediaQuery.of(context).size.width * 0.5 - 80,
+              child: BlocBuilder<AppBlocBloc, AppBlocState>(
+                builder: (context, state) {
+                  int level = context.read<AppBlocBloc>().state.level;
+                  return Container(
+                    decoration: BoxDecoration(
+                        borderRadius: const BorderRadius.all(
                           Radius.circular(10),
                         ),
-                        color: Colors.black12),
-                    child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Text(
-                            'แบบทดสอบที่ ...',
-                            style: Theme.of(context).textTheme.titleLarge,
-                          ),
-                          Text(
-                            'ระดับ ${state.quizLevel}',
-                            style: Theme.of(context).textTheme.titleLarge,
-                          )
-                        ]),
-                  ),
-                  const FlipCardProvider(),
-                  const SizedBox(
-                    height: 30,
-                  ),
-                  SizedBox(
-                    width: 300,
-                    height: 200,
-                    // color: Colors.amber,
-                    child: Column(children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          SizedBox(
-                            width: 145,
-                            height: 70,
-                            child: ElevatedButton(
-                                onPressed: () {}, child: const Text('กำหนด')),
-                          ),
-                          const SizedBox(width: 10),
-                          SizedBox(
-                            width: 145,
-                            height: 70,
-                            child: ElevatedButton(
-                                onPressed: () {}, child: const Text('ทดลอง')),
-                          )
-                        ],
-                      ),
-                      const SizedBox(height: 10),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          SizedBox(
-                            width: 145,
-                            height: 70,
-                            child: ElevatedButton(
-                                onPressed: () {}, child: const Text('เปรียบเทียบ')),
-                          ),
-                          const SizedBox(width: 10),
-                          SizedBox(
-                            width: 145,
-                            height: 70,
-                            child: ElevatedButton(
-                                onPressed: () {}, child: const Text('จำกัด')),
-                          )
-                        ],
-                      )
-                    ]),
-                  )
-                ],
-              );
-            },
-          ),
+                        color: Theme.of(context).appBarTheme.backgroundColor),
+                    width: 160,
+                    height: 50,
+                    child: Center(
+                        child: Text(
+                      'Level $level',
+                      style: Theme.of(context).textTheme.titleLarge,
+                    )),
+                  );
+                },
+              ),
+            ),
+          ],
         ),
       ),
     );

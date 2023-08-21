@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:word_test/screens/setting_screen/widgets/widget_theme.dart';
-
 import '../../../utils/app_colors.dart';
 
 class SettingTheme extends StatelessWidget {
   const SettingTheme({
     super.key,
   });
-
   @override
   Widget build(BuildContext context) {
     return Container(

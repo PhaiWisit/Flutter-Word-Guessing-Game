@@ -1,14 +1,14 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
+// ignore: depend_on_referenced_packages
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
-import 'package:path_provider/path_provider.dart';
 
 class DatabaseHelper {
   static const _databaseName = "vocab.db";
+  // ignore: unused_field
   static const _databaseVersion = 1;
   static const table = 'levels';
   static const columnId = '_id';

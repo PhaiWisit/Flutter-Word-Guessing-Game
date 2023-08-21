@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
-
 import 'app_colors.dart';
 
 enum AppTheme { defaultTheme, darkTheme, colorFulTheme, cuteTheme }
 
 class AppThemes {
   static final appThemeData = {
+    // Default Theme
     AppTheme.defaultTheme: ThemeData(
-        appBarTheme: const AppBarTheme(
-          color: AppColors.default2,
-        ),
+        appBarTheme: const AppBarTheme(backgroundColor: AppColors.default5),
         primarySwatch: Colors.grey,
         primaryColor: AppColors.default3,
         brightness: Brightness.light,
         colorScheme: const ColorScheme.light(),
-        dividerColor: AppColors.default4,
+        dividerColor: AppColors.default5,
+        // ignore: deprecated_member_use
+        toggleableActiveColor: AppColors.default5,
         textButtonTheme: TextButtonThemeData(
           style: ButtonStyle(
             foregroundColor: MaterialStateProperty.all(Colors.black),
@@ -28,7 +28,6 @@ class AppThemes {
           // color: AppColors.default4,
           color: Color.fromARGB(255, 46, 46, 46),
         ),
-        
         iconButtonTheme: const IconButtonThemeData(
           style: ButtonStyle(
             iconColor: MaterialStatePropertyAll(
@@ -43,11 +42,33 @@ class AppThemes {
               TextStyle(color: Colors.black87, fontWeight: FontWeight.bold),
         ),
         elevatedButtonTheme: ElevatedButtonThemeData(
-            style: ButtonStyle(
-                foregroundColor: MaterialStateProperty.all(Colors.white),
-                backgroundColor:
-                    MaterialStateProperty.all(AppColors.default5)))),
+          style: ButtonStyle(
+            foregroundColor: MaterialStateProperty.all(Colors.white),
+            backgroundColor: MaterialStateProperty.all(AppColors.default4),
+          ),
+        ),
+        switchTheme: SwitchThemeData(
+          thumbColor: MaterialStateProperty.resolveWith<Color>(
+            (Set<MaterialState> states) {
+              if (states.contains(MaterialState.selected)) {
+                return Colors.green; // Active (on) thumb color
+              }
+              return Colors.grey; // Inactive (off) thumb color
+            },
+          ),
+          trackColor: MaterialStateProperty.resolveWith<Color>(
+            (Set<MaterialState> states) {
+              if (states.contains(MaterialState.selected)) {
+                return Colors.greenAccent; // Active (on) track color
+              }
+              return Colors.grey; // Inactive (off) track color
+            },
+          ),
+        )),
+
+    //Dark Theme
     AppTheme.darkTheme: ThemeData(
+      appBarTheme: const AppBarTheme(backgroundColor: AppColors.dark5),
       primarySwatch: Colors.grey,
       primaryColor: Colors.black,
       brightness: Brightness.dark,
@@ -64,6 +85,8 @@ class AppThemes {
         titleLarge:
             TextStyle(color: AppColors.dark3, fontWeight: FontWeight.bold),
       ),
+      // ignore: deprecated_member_use
+      toggleableActiveColor: AppColors.dark3,
       iconTheme: const IconThemeData(color: AppColors.dark1),
       iconButtonTheme: const IconButtonThemeData(
         style: ButtonStyle(
@@ -73,47 +96,56 @@ class AppThemes {
         ),
       ),
     ),
+
+    //Colorful Theme
     AppTheme.colorFulTheme: ThemeData(
-        appBarTheme: const AppBarTheme(
-          color: AppColors.colorFul3,
+      appBarTheme: const AppBarTheme(
+        color: AppColors.colorFul3,
+      ),
+      primarySwatch: Colors.grey,
+      primaryColor: AppColors.colorFul5,
+      brightness: Brightness.light,
+      colorScheme: lightColorScheme,
+      // backgroundColor: const Color(0xFF212121),
+      dividerColor: AppColors.colorFul1,
+      textButtonTheme: TextButtonThemeData(
+        style: ButtonStyle(
+          foregroundColor: MaterialStateProperty.all(Colors.black),
         ),
-        primarySwatch: Colors.grey,
-        primaryColor: AppColors.colorFul5,
-        brightness: Brightness.light,
-        colorScheme: lightColorScheme,
-        // backgroundColor: const Color(0xFF212121),
-        dividerColor: AppColors.colorFul1,
-        textButtonTheme: TextButtonThemeData(
-          style: ButtonStyle(
-            foregroundColor: MaterialStateProperty.all(Colors.black),
-          ),
-        ),
-        textTheme: const TextTheme(
+      ),
+      textTheme: const TextTheme(
           titleSmall: TextStyle(color: AppColors.colorFul4),
           titleMedium: TextStyle(color: AppColors.colorFul4),
           titleLarge: TextStyle(
               color: AppColors.colorFul1, fontWeight: FontWeight.bold),
-        ),
-        iconTheme: const IconThemeData(color: AppColors.colorFul3),
-        iconButtonTheme: const IconButtonThemeData(
-          style: ButtonStyle(
-            iconColor: MaterialStatePropertyAll(
-              AppColors.colorFul3,
-            ),
+          bodyLarge: TextStyle(color: Colors.black)),
+      iconTheme: const IconThemeData(color: AppColors.colorFul3),
+      iconButtonTheme: const IconButtonThemeData(
+        style: ButtonStyle(
+          iconColor: MaterialStatePropertyAll(
+            AppColors.colorFul3,
           ),
         ),
-        elevatedButtonTheme: ElevatedButtonThemeData(
-            style: ButtonStyle(
-                backgroundColor:
-                    MaterialStateProperty.all(AppColors.colorFul5)))),
+      ),
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ButtonStyle(
+          backgroundColor: MaterialStateProperty.all(AppColors.colorFul3),
+        ),
+      ),
+      // ignore: deprecated_member_use
+      toggleableActiveColor: AppColors.colorFul1,
+    ),
+
+    //Cute Theme
     AppTheme.cuteTheme: ThemeData(
-      
+      appBarTheme: const AppBarTheme(
+        color: Color(0xFF687DAF),
+      ),
       primarySwatch: Colors.grey,
       primaryColor: Colors.black,
       brightness: Brightness.light,
       colorScheme: lightColorScheme,
-      dividerColor: AppColors.cute1,
-
+      dividerColor: AppColors.cute3,
       textButtonTheme: TextButtonThemeData(
         style: ButtonStyle(
           foregroundColor: MaterialStateProperty.all(Colors.black),
@@ -137,6 +169,8 @@ class AppThemes {
           ),
         ),
       ),
+      // ignore: deprecated_member_use
+      toggleableActiveColor: const Color(0xFF687DAF),
     ),
   };
 }
@@ -154,7 +188,6 @@ const lightColorScheme = ColorScheme(
   surface: Color.fromARGB(255, 54, 210, 210),
   onSurface: Color(0xFF3b3b3b),
 );
-
 const darkColorScheme = ColorScheme(
   brightness: Brightness.dark,
   primary: Color(0xFFADC6FF),

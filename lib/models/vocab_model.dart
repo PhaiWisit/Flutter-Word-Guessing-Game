@@ -28,12 +28,12 @@ class VocabModel {
   factory VocabModel.fromJson(Map<String, dynamic> json) => VocabModel(
         vocabId: json["vocab_id"],
         quizId: json["quiz_id"],
-        levelId: json["level_id"],
-        vocabEng: json["vocab_eng"],
-        vocabTha: json["vocab_tha"],
-        vocabMeaning: json["vocab_meaning"],
-        vocabType: json["vocab_type"],
-        vocabChoice: json["vocab_choice"],
+        levelId: json["level_id"] ,
+        vocabEng: json["vocab_eng"]?? '',
+        vocabTha: json["vocab_tha"]?? '',
+        vocabMeaning: json["vocab_meaning"]?? '',
+        vocabType: json["vocab_type"]?? '',
+        vocabChoice: json["vocab_choice"]?? '',
         vocabCorrectCount: json["vocab_correct_count"] ?? 0,
         vocabWrongCount: json["vocab_wrong_count"] ?? 0,
       );

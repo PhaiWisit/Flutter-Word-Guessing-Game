@@ -11,7 +11,6 @@ class SettingState extends Equatable {
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
       'themeSelected': themeSelected,
-      
     };
   }
 

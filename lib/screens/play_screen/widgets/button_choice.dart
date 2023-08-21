@@ -35,8 +35,6 @@ class _ButtonChoiceState extends State<ButtonChoice>
           });
         },
         onTap: () async {
-          // context.read<AppBlocBloc>().add(ChooseQuizLevel(quiz_level: widget.level));
-          // Navigator.of(context).pushNamed(QuizScreen.id);
         },
         child: AnimatedContainer(
           duration: const Duration(milliseconds: 300),

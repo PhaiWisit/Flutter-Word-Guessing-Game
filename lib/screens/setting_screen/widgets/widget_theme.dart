@@ -5,13 +5,11 @@ class WidgetTheme extends StatelessWidget {
   final int themeId;
   final String themeTitle;
   final List<Color> themeColor;
-
   const WidgetTheme({
     super.key,
     required this.themeId,
     required this.themeTitle,
     required this.themeColor,
-    
   });
 
   @override

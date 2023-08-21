@@ -6,9 +6,7 @@ import 'widgets/setting_notification.dart';
 
 class SettingScreen extends StatelessWidget {
   static const id = 'setting_screen';
-
   const SettingScreen({super.key});
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

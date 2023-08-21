@@ -19,9 +19,6 @@ class PopupMenu extends StatelessWidget {
             icon: const Icon(Icons.settings),
             label: const Text('Setting'),
           ),
-          // onTap: () {
-          //   Navigator.of(context).pushNamed(SettingScreen.id);
-          // },
         ),
         PopupMenuItem(
           value: 'about',

@@ -7,6 +7,7 @@ class SettingSound extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool _musicSwitchValue = true;
     return Container(
       width: double.infinity,
       height: 130,
@@ -21,18 +22,31 @@ class SettingSound extends StatelessWidget {
         child: Column(
           children: [
             Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const SizedBox(width: 4),
-                Text(
-                  'Music Sound',
-                  style: Theme.of(context).textTheme.titleSmall,
+                Row(
+                  children: [
+                    const SizedBox(width: 4),
+                    Text(
+                      'Music Sound',
+                      style: Theme.of(context).textTheme.titleSmall,
+                    ),
+                    const Icon(Icons.volume_up_outlined),
+                  ],
                 ),
-                
-                const Icon(Icons.volume_up_outlined),
-                Slider(
-                  value: 0,
-                  onChanged: (value) {},
-                )
+
+                // Slider(
+                //   value: 0,
+                //   onChanged: (value) {},
+                // ),
+                Switch(
+                    // activeColor: Colors.amber,
+                    // activeTrackColor: Colors.cyan,
+                    // inactiveThumbColor: Colors.blueGrey.shade600,
+                    // inactiveTrackColor: Colors.grey.shade400,
+                    splashRadius: 50.0,
+                    value: _musicSwitchValue,
+                    onChanged: (value) {}),
               ],
             ),
             const SizedBox(height: 10),
@@ -43,10 +57,8 @@ class SettingSound extends StatelessWidget {
                   'Effect Sound',
                   style: Theme.of(context).textTheme.titleSmall,
                 ),
-                
                 const Icon(Icons.volume_up_outlined),
                 Slider(
-                  
                   value: 0,
                   onChanged: (value) {},
                 )

@@ -8,11 +8,15 @@ abstract class LevelEvent extends Equatable {
 }
 
 class GetLevelList extends LevelEvent {
-  // final List<LevelModel> levelModel;
-  // const GetLevelList({
-  //   required this.levelModel,
-  // });
-
   @override
   List<Object> get props => [];
 }
+
+// class ChooseLevel extends LevelEvent{
+//   final int level;
+//   const ChooseLevel({required this.level});
+  
+//   @override
+//   List<Object> get props => [level];
+// }
+

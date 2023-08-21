@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:word_test/screens/quiz_screen/quiz_screen.dart';
+import 'package:word_test/screens/play_screen/play_screen.dart';
+import 'package:word_test/screens/play_screen/play_screen_random.dart';
 
 class CardDailyQuiz extends StatelessWidget {
   const CardDailyQuiz({
     super.key,
   });
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -36,30 +36,23 @@ class CardDailyQuiz extends StatelessWidget {
                       size: 70,
                     ),
                   ),
-                  // Image.asset(
-                  //   ImgSample.get("reading.png"),
-                  //   height: 100,
-                  //   width: 100,
-                  //   fit: BoxFit.cover,
-                  // ),
-                  // Container(width: 10),
                   Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Container(height: 5),
                         Text(
-                          "Daily Quiz",
+                          "Random Quiz",
                           style: Theme.of(context).textTheme.titleLarge,
                         ),
                         Container(height: 5),
                         Text(
-                          "แบบทดสอบรายวันของคุณ",
+                          "แบบทดสอบแบบสุ่ม",
                           style: Theme.of(context).textTheme.titleMedium,
                         ),
                         Container(height: 10),
                         Text(
-                          'ทำแบบทดสอบรายวันของคุณโดยการสุ่มคำศัพท์ในแต่ละระดับมาเล่น',
+                          'สุ่มแบบทดสอบจากคำศัพท์ทุกระดับมาทดสอบ',
                           style: Theme.of(context).textTheme.titleSmall,
                           maxLines: 3,
                         ),
@@ -68,11 +61,11 @@ class CardDailyQuiz extends StatelessWidget {
                           children: [
                             ElevatedButton(
                               onPressed: () {
-                                Navigator.of(context).pushNamed(QuizScreen.id);
+                                Navigator.of(context).pushNamed(PlayScreenRandom.id);
                               },
                               child: Text(
                                 'เริ่มเลย',
-                                style: Theme.of(context).textTheme.titleMedium,
+                                style: Theme.of(context).textTheme.bodyLarge,
                               ),
                             ),
                           ],
