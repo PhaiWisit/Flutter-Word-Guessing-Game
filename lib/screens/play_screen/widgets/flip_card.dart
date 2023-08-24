@@ -1,5 +1,8 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flip_card/flip_card.dart';
 import 'package:flutter/material.dart';
+
+import '../../../blocs/blocs_export.dart';
 
 // ignore: must_be_immutable
 class FlipCardProvider extends StatefulWidget {
@@ -25,7 +28,6 @@ class _FlipCardProviderState extends State<FlipCardProvider> {
 
   @override
   Widget build(BuildContext context) {
-
     if (cardKey.currentState != null) {
       if (!cardKey.currentState!.isFront) {
         setState(() {
@@ -42,54 +44,62 @@ class _FlipCardProviderState extends State<FlipCardProvider> {
       margin: const EdgeInsets.only(
           left: 32.0, right: 32.0, top: 20.0, bottom: 0.0),
       color: const Color(0x00000000),
-      child: FlipCard(
-        key: cardKey,
-        direction: FlipDirection.HORIZONTAL,
-        side: CardSide.FRONT,
-        speed: flipSpeed,
-        onFlipDone: (status) {},
-        front: Container(
-          width: cardWidth,
-          height: cardHeight,
-          decoration: BoxDecoration(
-            // ignore: deprecated_member_use
-            color: Theme.of(context).toggleableActiveColor,
-            borderRadius: const BorderRadius.all(Radius.circular(8.0)),
-          ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Text(widget.vocabEng,
-                  style: Theme.of(context).textTheme.headlineLarge),
-              Text('(${widget.vocabType}.)',
-                  style: Theme.of(context).textTheme.headlineSmall),
-            ],
-          ),
-        ),
-        back: Container(
-          width: cardWidth,
-          height: cardHeight,
-          decoration: BoxDecoration(
-            // ignore: deprecated_member_use
-            color: Theme.of(context).toggleableActiveColor,
-            borderRadius: const BorderRadius.all(Radius.circular(8.0)),
-          ),
-          child: Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Text('ความหมายภาษาอังกฤษ',
-                    style: Theme.of(context).textTheme.headlineSmall),
-                const SizedBox(height: 10),
-                Text(widget.vocabMeaning,
-                    style: Theme.of(context).textTheme.headlineSmall),
-                // Text('Click here to flip front',
-                // style: Theme.of(context).textTheme.bodyLarge),
-              ],
+      child: BlocBuilder<SettingBloc, SettingState>(
+        builder: (context, state) {
+          return FlipCard(
+            key: cardKey,
+            direction: FlipDirection.HORIZONTAL,
+            side: CardSide.FRONT,
+            speed: flipSpeed,
+            onFlip: () async {
+              AudioPlayer audioPlayer = AudioPlayer();
+              state.effectIsOn
+                  ? await audioPlayer.play(AssetSource('sounds/effect_2.mp3'))
+                  : null;
+            },
+            onFlipDone: (status) async {},
+            front: Container(
+              width: cardWidth,
+              height: cardHeight,
+              decoration: BoxDecoration(
+                // ignore: deprecated_member_use
+                color: Theme.of(context).toggleableActiveColor,
+                borderRadius: const BorderRadius.all(Radius.circular(8.0)),
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Text(widget.vocabEng,
+                      style: Theme.of(context).textTheme.headlineLarge),
+                  Text('(${widget.vocabType}.)',
+                      style: Theme.of(context).textTheme.headlineSmall),
+                ],
+              ),
             ),
-          ),
-        ),
+            back: Container(
+              width: cardWidth,
+              height: cardHeight,
+              decoration: BoxDecoration(
+                // ignore: deprecated_member_use
+                color: Theme.of(context).toggleableActiveColor,
+                borderRadius: const BorderRadius.all(Radius.circular(8.0)),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Text('ความหมายภาษาอังกฤษ',
+                        style: Theme.of(context).textTheme.headlineSmall),
+                    const SizedBox(height: 10),
+                    Text(widget.vocabMeaning,
+                        style: Theme.of(context).textTheme.headlineSmall),
+                  ],
+                ),
+              ),
+            ),
+          );
+        },
       ),
     );
   }

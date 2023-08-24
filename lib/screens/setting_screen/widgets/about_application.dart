@@ -7,7 +7,7 @@ class AboutApplication extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      height: 250,
+      height: 150,
       decoration: const BoxDecoration(
         borderRadius: BorderRadius.all(
           Radius.circular(5),
@@ -23,14 +23,14 @@ class AboutApplication extends StatelessWidget {
               Text('About Application',style: Theme.of(context).textTheme.titleSmall,),
               const Divider(),
               Text('Application Name : English Words Test',style: Theme.of(context).textTheme.titleSmall,),
-              Text('Number of words : 3000',style: Theme.of(context).textTheme.titleSmall,),
+              Text('Number of words : 1400',style: Theme.of(context).textTheme.titleSmall,),
               Text('Version : 1.0.5',style: Theme.of(context).textTheme.titleSmall,),
-              Text('Developer : Phai Software Solution',style: Theme.of(context).textTheme.titleSmall,),
+              Text('Developer : Hiyako Software',style: Theme.of(context).textTheme.titleSmall,),
               const SizedBox(height: 20),
-              Text('Contact',style: Theme.of(context).textTheme.titleSmall,),
-              const Divider(),
-              Text('Email : w.phai@hotmail.com',style: Theme.of(context).textTheme.titleSmall,),
-              Text('Website : www.phaisoft.com',style: Theme.of(context).textTheme.titleSmall,),
+              // Text('Contact',style: Theme.of(context).textTheme.titleSmall,),
+              // const Divider(),
+              // Text('Email : w.phai@hotmail.com',style: Theme.of(context).textTheme.titleSmall,),
+              // Text('Website : www.phaisoft.com',style: Theme.of(context).textTheme.titleSmall,),
             ]),
       ),
     );

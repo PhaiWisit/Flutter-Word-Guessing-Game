@@ -7,64 +7,65 @@ class AppThemes {
   static final appThemeData = {
     // Default Theme
     AppTheme.defaultTheme: ThemeData(
-        appBarTheme: const AppBarTheme(backgroundColor: AppColors.default5),
-        primarySwatch: Colors.grey,
-        primaryColor: AppColors.default3,
-        brightness: Brightness.light,
-        colorScheme: const ColorScheme.light(),
-        dividerColor: AppColors.default5,
-        // ignore: deprecated_member_use
-        toggleableActiveColor: AppColors.default5,
-        textButtonTheme: TextButtonThemeData(
-          style: ButtonStyle(
-            foregroundColor: MaterialStateProperty.all(Colors.black),
+      appBarTheme: const AppBarTheme(backgroundColor: AppColors.default5),
+      primarySwatch: Colors.grey,
+      primaryColor: AppColors.default3,
+      brightness: Brightness.light,
+      colorScheme: const ColorScheme.light(),
+      dividerColor: AppColors.default5,
+      // ignore: deprecated_member_use
+      toggleableActiveColor: AppColors.default5,
+      textButtonTheme: TextButtonThemeData(
+        style: ButtonStyle(
+          foregroundColor: MaterialStateProperty.all(Colors.black),
+        ),
+      ),
+      bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+          backgroundColor: Colors.grey,
+          selectedItemColor: Colors.black,
+          unselectedItemColor: Colors.white),
+      iconTheme: const IconThemeData(
+        // color: AppColors.default4,
+        color: Color.fromARGB(255, 46, 46, 46),
+      ),
+      iconButtonTheme: const IconButtonThemeData(
+        style: ButtonStyle(
+          iconColor: MaterialStatePropertyAll(
+            AppColors.default5,
           ),
         ),
-        bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-            backgroundColor: Colors.grey,
-            selectedItemColor: Colors.black,
-            unselectedItemColor: Colors.white),
-        iconTheme: const IconThemeData(
-          // color: AppColors.default4,
-          color: Color.fromARGB(255, 46, 46, 46),
+      ),
+      textTheme: const TextTheme(
+        titleSmall: TextStyle(color: AppColors.default2),
+        titleMedium: TextStyle(color: AppColors.default2),
+        titleLarge:
+            TextStyle(color: Colors.black87, fontWeight: FontWeight.bold),
+      ),
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ButtonStyle(
+          foregroundColor: MaterialStateProperty.all(Colors.white),
+          backgroundColor: MaterialStateProperty.all(AppColors.default4),
         ),
-        iconButtonTheme: const IconButtonThemeData(
-          style: ButtonStyle(
-            iconColor: MaterialStatePropertyAll(
-              AppColors.default5,
-            ),
-          ),
-        ),
-        textTheme: const TextTheme(
-          titleSmall: TextStyle(color: AppColors.default2),
-          titleMedium: TextStyle(color: AppColors.default2),
-          titleLarge:
-              TextStyle(color: Colors.black87, fontWeight: FontWeight.bold),
-        ),
-        elevatedButtonTheme: ElevatedButtonThemeData(
-          style: ButtonStyle(
-            foregroundColor: MaterialStateProperty.all(Colors.white),
-            backgroundColor: MaterialStateProperty.all(AppColors.default4),
-          ),
-        ),
-        switchTheme: SwitchThemeData(
-          thumbColor: MaterialStateProperty.resolveWith<Color>(
-            (Set<MaterialState> states) {
-              if (states.contains(MaterialState.selected)) {
-                return Colors.green; // Active (on) thumb color
-              }
-              return Colors.grey; // Inactive (off) thumb color
-            },
-          ),
-          trackColor: MaterialStateProperty.resolveWith<Color>(
-            (Set<MaterialState> states) {
-              if (states.contains(MaterialState.selected)) {
-                return Colors.greenAccent; // Active (on) track color
-              }
-              return Colors.grey; // Inactive (off) track color
-            },
-          ),
-        )),
+      ),
+      // switchTheme: SwitchThemeData(
+      //   thumbColor: MaterialStateProperty.resolveWith<Color>(
+      //     (Set<MaterialState> states) {
+      //       if (states.contains(MaterialState.selected)) {
+      //         return Colors.green; // Active (on) thumb color
+      //       }
+      //       return Colors.grey; // Inactive (off) thumb color
+      //     },
+      //   ),
+      //   trackColor: MaterialStateProperty.resolveWith<Color>(
+      //     (Set<MaterialState> states) {
+      //       if (states.contains(MaterialState.selected)) {
+      //         return Colors.greenAccent; // Active (on) track color
+      //       }
+      //       return Colors.grey; // Inactive (off) track color
+      //     },
+      //   ),
+      // ),
+    ),
 
     //Dark Theme
     AppTheme.darkTheme: ThemeData(

@@ -45,6 +45,7 @@ dependencies:
   flutter_local_notifications: ^15.1.0+1
   audioplayers: ^4.1.0
   permission_handler: ^10.4.3
+  url_launcher: ^6.1.11
 
 dev_dependencies:
   flutter_test:

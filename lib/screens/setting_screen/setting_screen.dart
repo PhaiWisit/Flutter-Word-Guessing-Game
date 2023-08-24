@@ -23,6 +23,8 @@ class SettingScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              
+              //Theme Setting
               Text(
                 'Theme',
                 style: Theme.of(context).textTheme.titleMedium,
@@ -30,6 +32,8 @@ class SettingScreen extends StatelessWidget {
               const Divider(),
               const SettingTheme(),
               const SizedBox(height: 20),
+
+              //Sound Setting
               Text(
                 'Sound',
                 style: Theme.of(context).textTheme.titleMedium,
@@ -37,13 +41,17 @@ class SettingScreen extends StatelessWidget {
               const Divider(),
               const SettingSound(),
               const SizedBox(height: 20),
-              Text(
-                'Notification',
-                style: Theme.of(context).textTheme.titleMedium,
-              ),
-              const Divider(),
-              const SettingNotification(),
-              const SizedBox(height: 20),
+
+              // //Notification Setting
+              // Text(
+              //   'Notification',
+              //   style: Theme.of(context).textTheme.titleMedium,
+              // ),
+              // const Divider(),
+              // const SettingNotification(),
+              // const SizedBox(height: 20),
+
+              //About Application
               Text(
                 'About Application',
                 style: Theme.of(context).textTheme.titleMedium,

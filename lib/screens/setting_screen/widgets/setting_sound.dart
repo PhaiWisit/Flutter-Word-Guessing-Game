@@ -1,4 +1,8 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+
+import '../../../blocs/blocs_export.dart';
 
 class SettingSound extends StatelessWidget {
   const SettingSound({
@@ -7,7 +11,6 @@ class SettingSound extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool _musicSwitchValue = true;
     return Container(
       width: double.infinity,
       height: 130,
@@ -19,52 +22,70 @@ class SettingSound extends StatelessWidget {
       ),
       child: Padding(
         padding: const EdgeInsets.all(10),
-        child: Column(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        child: BlocBuilder<SettingBloc, SettingState>(
+          builder: (context, state) {
+            return Column(
               children: [
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const SizedBox(width: 4),
-                    Text(
-                      'Music Sound',
-                      style: Theme.of(context).textTheme.titleSmall,
+                    Row(
+                      children: [
+                        const SizedBox(width: 4),
+                        Text(
+                          'Music Sound',
+                          style: Theme.of(context).textTheme.titleSmall,
+                        ),
+                        const SizedBox(width: 4),
+                        const Icon(Icons.volume_up_outlined),
+                      ],
                     ),
-                    const Icon(Icons.volume_up_outlined),
+                    Switch(
+                        splashRadius: 50.0,
+                        value: state.musicIsOn,
+                        onChanged: (value) {
+                          if (state.musicIsOn) {
+                            context.read<SettingBloc>().add(StopMusic());
+                            // log(state.musicIsOn.toString());
+                          } else {
+                            context.read<SettingBloc>().add(PlayMusic());
+                            // log(state.musicIsOn.toString());
+                          }
+                        }),
                   ],
                 ),
-
-                // Slider(
-                //   value: 0,
-                //   onChanged: (value) {},
-                // ),
-                Switch(
-                    // activeColor: Colors.amber,
-                    // activeTrackColor: Colors.cyan,
-                    // inactiveThumbColor: Colors.blueGrey.shade600,
-                    // inactiveTrackColor: Colors.grey.shade400,
-                    splashRadius: 50.0,
-                    value: _musicSwitchValue,
-                    onChanged: (value) {}),
-              ],
-            ),
-            const SizedBox(height: 10),
-            Row(
-              children: [
-                const SizedBox(width: 4),
-                Text(
-                  'Effect Sound',
-                  style: Theme.of(context).textTheme.titleSmall,
+                const SizedBox(height: 10),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      children: [
+                        const SizedBox(width: 4),
+                        Text(
+                          'Effect Sound',
+                          style: Theme.of(context).textTheme.titleSmall,
+                        ),
+                        const SizedBox(width: 4),
+                        const Icon(Icons.volume_up_outlined),
+                      ],
+                    ),
+                    Switch(
+                      splashRadius: 50.0,
+                        value: state.effectIsOn,
+                        onChanged: (value) {
+                          if (state.effectIsOn) {
+                            context.read<SettingBloc>().add(EffectOff());
+                            
+                          } else {
+                            context.read<SettingBloc>().add(EffectOn());
+                            
+                          }
+                        }),
+                  ],
                 ),
-                const Icon(Icons.volume_up_outlined),
-                Slider(
-                  value: 0,
-                  onChanged: (value) {},
-                )
               ],
-            ),
-          ],
+            );
+          },
         ),
       ),
     );

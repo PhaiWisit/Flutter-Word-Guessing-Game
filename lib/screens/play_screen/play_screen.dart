@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flip_card/flip_card.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +14,7 @@ class PlayScreen extends StatefulWidget {
   int index = 0;
   int correctNumber = 0;
   List<int> wrongWordIndex = [];
-  int quizId ;
+  int quizId;
 
   PlayScreen({
     Key? key,
@@ -57,6 +58,7 @@ class _PlayScreenState extends State<PlayScreen> {
       return false;
     }
   }
+
   CardSide cardSide = CardSide.FRONT;
 
   @override
@@ -85,9 +87,8 @@ class _PlayScreenState extends State<PlayScreen> {
                             child: Text("Error when load quiz list."));
                       }
                       if (state is VocabLoadedState) {
-                      
                         List<VocabModel> vocabList = state.vocabList;
-                        if (vocabList.isNotEmpty && widget.index < 20 ) {
+                        if (vocabList.isNotEmpty && widget.index < 20) {
                           //test = 0 / default = 20
                           List<String> choiceText =
                               _switchPositionChoice(vocabList[widget.index]);
@@ -141,7 +142,7 @@ class _PlayScreenState extends State<PlayScreen> {
                                 vocabType: vocabList[widget.index].vocabType,
                                 vocabMeaning:
                                     vocabList[widget.index].vocabMeaning,
-                                    cardSide: cardSide,
+                                cardSide: cardSide,
                               ),
                               const SizedBox(
                                 height: 30,
@@ -149,65 +150,107 @@ class _PlayScreenState extends State<PlayScreen> {
                               SizedBox(
                                 width: 300,
                                 height: 200,
-                                child: Column(children: [
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      SizedBox(
-                                        width: 145,
-                                        height: 70,
-                                        child: ElevatedButton(
-                                            onPressed: () {
-                                              _isCorrect(
-                                                  vocabList, answer, choice1);
-                                                  
-                                            },
-                                            child: Text(choice1)),
+                                child: BlocBuilder<SettingBloc, SettingState>(
+                                  builder: (context, state) {
+                                    AudioPlayer audioPlayer = AudioPlayer();
+
+                                    return Column(children: [
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          //Button Choice 1
+                                          SizedBox(
+                                            width: 145,
+                                            height: 70,
+                                            child: ElevatedButton(
+                                                onPressed: () async {
+                                                  _isCorrect(
+                                                    vocabList,
+                                                    answer,
+                                                    choice1,
+                                                  );
+                                                  state.effectIsOn
+                                                      ? await audioPlayer.play(
+                                                          AssetSource(
+                                                              'sounds/effect_1.mp3'))
+                                                      : null;
+                                                },
+                                                child: Text(choice1)),
+                                          ),
+                                          const SizedBox(width: 10),
+
+                                          //Button Choice 2
+                                          SizedBox(
+                                            width: 145,
+                                            height: 70,
+                                            child: ElevatedButton(
+                                                onPressed: () async {
+                                                  _isCorrect(
+                                                    vocabList,
+                                                    answer,
+                                                    choice2,
+                                                  );
+                                                  state.effectIsOn
+                                                      ? await audioPlayer.play(
+                                                          AssetSource(
+                                                              'sounds/effect_1.mp3'))
+                                                      : null;
+                                                },
+                                                child: Text(choice2)),
+                                          )
+                                        ],
                                       ),
-                                      const SizedBox(width: 10),
-                                      SizedBox(
-                                        width: 145,
-                                        height: 70,
-                                        child: ElevatedButton(
-                                            onPressed: () {
-                                              _isCorrect(
-                                                  vocabList, answer, choice2);
-                                                  
-                                            },
-                                            child: Text(choice2)),
+                                      const SizedBox(height: 10),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          //Button Choice 3
+                                          SizedBox(
+                                            width: 145,
+                                            height: 70,
+                                            child: ElevatedButton(
+                                                onPressed: () async {
+                                                  _isCorrect(
+                                                    vocabList,
+                                                    answer,
+                                                    choice3,
+                                                  );
+                                                  state.effectIsOn
+                                                      ? await audioPlayer.play(
+                                                          AssetSource(
+                                                              'sounds/effect_1.mp3'))
+                                                      : null;
+                                                },
+                                                child: Text(choice3)),
+                                          ),
+                                          const SizedBox(width: 10),
+
+                                          //Button Choice 4
+                                          SizedBox(
+                                            width: 145,
+                                            height: 70,
+                                            child: ElevatedButton(
+                                                onPressed: () async {
+                                                  _isCorrect(
+                                                    vocabList,
+                                                    answer,
+                                                    choice4,
+                                                  );
+                                                  state.effectIsOn
+                                                      ? await audioPlayer.play(
+                                                          AssetSource(
+                                                              'sounds/effect_1.mp3'))
+                                                      : null;
+                                                },
+                                                child: Text(choice4)),
+                                          )
+                                        ],
                                       )
-                                    ],
-                                  ),
-                                  const SizedBox(height: 10),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      SizedBox(
-                                        width: 145,
-                                        height: 70,
-                                        child: ElevatedButton(
-                                            onPressed: () {
-                                              _isCorrect(
-                                                  vocabList, answer, choice3);
-                                                 
-                                            },
-                                            child: Text(choice3)),
-                                      ),
-                                      const SizedBox(width: 10),
-                                      SizedBox(
-                                        width: 145,
-                                        height: 70,
-                                        child: ElevatedButton(
-                                            onPressed: () {
-                                              _isCorrect(
-                                                  vocabList, answer, choice4);
-                                                 
-                                            },
-                                            child: Text(choice4)),
-                                      )
-                                    ],
-                                  )
-                                ]),
+                                    ]);
+                                  },
+                                ),
                               )
                             ],
                           );

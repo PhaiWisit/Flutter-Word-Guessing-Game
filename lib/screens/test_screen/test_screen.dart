@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:word_test/database/vocab_service.dart';
 import 'package:word_test/models/vocab_model.dart';
+import '../../blocs/blocs_export.dart';
 import '../../main.dart';
 import '../setting_screen/setting_screen.dart';
 import 'package:audioplayers/audioplayers.dart';
@@ -30,7 +31,7 @@ class TestScreen extends StatelessWidget {
     List<VocabModel> vocabList = await vocabService.getRandomVocabList();
     // log(quizList[1].quizName);
     for (int i = 0; i < vocabList.length; i++) {
-      log('${i+1} ${vocabList[i].vocabEng}');
+      log('${i + 1} ${vocabList[i].vocabEng}');
     }
   }
 
@@ -84,60 +85,67 @@ class TestScreen extends StatelessWidget {
                 icon: const Icon(Icons.settings))
           ],
         ),
-        body: SingleChildScrollView(
-          child: Center(
-            child: Column(
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+        body: BlocBuilder<SettingBloc, SettingState>(
+          builder: (context, state) {
+            return SingleChildScrollView(
+              child: Center(
+                child: Column(
                   children: [
-                    IconButton(
-                        onPressed: () {
-                          _playAudioFromAssets();
-                        },
-                        icon: const Icon(Icons.play_arrow)),
-                    IconButton(onPressed: () {}, icon: const Icon(Icons.pause)),
-                    IconButton(
-                        onPressed: () {
-                          _stopAudio();
-                        },
-                        icon: const Icon(Icons.stop)),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        IconButton(
+                            onPressed: () {
+                              // context.read<SettingBloc>().add(PlayMusic());
+                            },
+                            icon: const Icon(Icons.play_arrow)),
+                        IconButton(
+                            onPressed: () {}, icon: const Icon(Icons.pause)),
+                        IconButton(
+                            onPressed: () {
+                              // context.read<SettingBloc>().add(StopMusic());
+                            },
+                            icon: const Icon(Icons.stop)),
+                      ],
+                    ),
+                    ElevatedButton(
+                        onPressed: _showNotification,
+                        child: Text('Test Notification')),
+                    Text('labelSmall',
+                        style: Theme.of(context).textTheme.labelSmall),
+                    Text('labelMedium',
+                        style: Theme.of(context).textTheme.labelMedium),
+                    Text('labelLarge',
+                        style: Theme.of(context).textTheme.labelLarge),
+                    Text('bodySmall',
+                        style: Theme.of(context).textTheme.bodySmall),
+                    Text('bodyMedium',
+                        style: Theme.of(context).textTheme.bodyMedium),
+                    Text('bodyLarge',
+                        style: Theme.of(context).textTheme.bodyLarge),
+                    Text('titleSmall',
+                        style: Theme.of(context).textTheme.titleSmall),
+                    Text('titleMedium',
+                        style: Theme.of(context).textTheme.titleMedium),
+                    Text('titleLarge',
+                        style: Theme.of(context).textTheme.titleLarge),
+                    Text('headlineSmall',
+                        style: Theme.of(context).textTheme.headlineSmall),
+                    Text('headlineMedium',
+                        style: Theme.of(context).textTheme.headlineMedium),
+                    Text('headlineLarge',
+                        style: Theme.of(context).textTheme.headlineLarge),
+                    Text('displaySmall',
+                        style: Theme.of(context).textTheme.displaySmall),
+                    Text('displayMedium',
+                        style: Theme.of(context).textTheme.displayMedium),
+                    Text('displayLarge',
+                        style: Theme.of(context).textTheme.displayLarge),
                   ],
                 ),
-                ElevatedButton(
-                    onPressed: _showNotification,
-                    child: Text('Test Notification')),
-                Text('labelSmall',
-                    style: Theme.of(context).textTheme.labelSmall),
-                Text('labelMedium',
-                    style: Theme.of(context).textTheme.labelMedium),
-                Text('labelLarge',
-                    style: Theme.of(context).textTheme.labelLarge),
-                Text('bodySmall', style: Theme.of(context).textTheme.bodySmall),
-                Text('bodyMedium',
-                    style: Theme.of(context).textTheme.bodyMedium),
-                Text('bodyLarge', style: Theme.of(context).textTheme.bodyLarge),
-                Text('titleSmall',
-                    style: Theme.of(context).textTheme.titleSmall),
-                Text('titleMedium',
-                    style: Theme.of(context).textTheme.titleMedium),
-                Text('titleLarge',
-                    style: Theme.of(context).textTheme.titleLarge),
-                Text('headlineSmall',
-                    style: Theme.of(context).textTheme.headlineSmall),
-                Text('headlineMedium',
-                    style: Theme.of(context).textTheme.headlineMedium),
-                Text('headlineLarge',
-                    style: Theme.of(context).textTheme.headlineLarge),
-                Text('displaySmall',
-                    style: Theme.of(context).textTheme.displaySmall),
-                Text('displayMedium',
-                    style: Theme.of(context).textTheme.displayMedium),
-                Text('displayLarge',
-                    style: Theme.of(context).textTheme.displayLarge),
-              ],
-            ),
-          ),
+              ),
+            );
+          },
         ),
       ),
     );
