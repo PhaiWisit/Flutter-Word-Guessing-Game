@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:word_test/models/level_model.dart';
 import 'package:word_test/screens/home_screen/widgets/card_daily_quiz.dart';
@@ -7,9 +5,34 @@ import 'package:word_test/screens/home_screen/widgets/card_quiz.dart';
 import 'package:word_test/screens/home_screen/widgets/container_head.dart';
 import '../../blocs/blocs_export.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   static const id = 'home_screen';
   const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
+  final List<AppLifecycleState> _stateHistoryList = <AppLifecycleState>[];
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addObserver(this);
+    if (WidgetsBinding.instance.lifecycleState != null) {
+      _stateHistoryList.add(WidgetsBinding.instance.lifecycleState!);
+    }
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.paused) {
+      BlocProvider.of<SettingBloc>(context).add(PauseMusic());
+    } else if (state == AppLifecycleState.resumed) {
+      BlocProvider.of<SettingBloc>(context).add(ResumeMusic());
+    }
+  }
+
   IconData levelIcon(int level) {
     switch (level) {
       case 1:
@@ -35,14 +58,11 @@ class HomeScreen extends StatelessWidget {
       child: Scaffold(
         body: BlocBuilder<SettingBloc, SettingState>(
           builder: (context, state) {
-            // log('state musicIsOn in home : ${state.musicIsOn}');
             if (state.musicIsOn) {
               context.read<SettingBloc>().add(PlayMusic());
-            }else{
+            } else {
               context.read<SettingBloc>().add(StopMusic());
             }
-
-
             return SingleChildScrollView(
               child: Stack(
                 children: [

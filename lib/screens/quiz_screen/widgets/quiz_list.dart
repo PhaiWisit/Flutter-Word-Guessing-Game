@@ -16,6 +16,7 @@ class QuizList extends StatelessWidget {
     switch (quizRate) {
       case 1:
         return Row(
+
           children: const [
             Icon(
               Icons.star,

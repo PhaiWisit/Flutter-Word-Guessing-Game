@@ -16,6 +16,7 @@ final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
 
 main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
   final storage = await HydratedStorage.build(
     storageDirectory: kIsWeb
         ? HydratedStorage.webStorageDirectory
@@ -81,9 +82,16 @@ Future<void> requestNotificationPermissions() async {
   print('Notification permission granted: $isNotificationPermissionGranted');
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   final AppRouter appRouter;
   const MyApp({super.key, required this.appRouter});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+
   @override
   Widget build(BuildContext context) {
     requestNotificationPermissions();
@@ -125,11 +133,11 @@ class MyApp extends StatelessWidget {
                 PointerDeviceKind.unknown
               },
             ),
-            title: 'Flutter Demo',
+            title: 'ศัพท์สน',
             debugShowCheckedModeBanner: false,
             theme: themeData,
             home: const HomeScreen(),
-            onGenerateRoute: appRouter.onGenerateRoute,
+            onGenerateRoute: widget.appRouter.onGenerateRoute,
           );
         },
       ),

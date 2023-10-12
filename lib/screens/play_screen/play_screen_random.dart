@@ -70,8 +70,6 @@ class _PlayScreenRandomState extends State<PlayScreenRandom> {
             width: MediaQuery.of(context).size.width,
             child: BlocBuilder<AppBlocBloc, AppBlocState>(
               builder: (context, state) {
-                int level = state.level;
-                int quiz = state.quiz;
                 return BlocProvider(
                   create: (context) =>
                       VocabBloc()..add(const GetVocabRandomList()),

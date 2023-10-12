@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:word_test/blocs/blocs_export.dart';
 import 'package:word_test/database/quiz_service.dart';
 import 'package:word_test/screens/home_screen/home_screen.dart';
+import 'package:word_test/utils/app_images.dart';
 import '../../../models/vocab_model.dart';
 import '../../../utils/app_theme.dart';
 
@@ -42,6 +43,95 @@ class ScoreSummary extends StatelessWidget {
       rate = 3;
     }
 
+    Row _rateStar(int quizRate) {
+      switch (quizRate) {
+        case 1:
+          return Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: const [
+              Icon(
+                Icons.star,
+                color: Colors.amber,
+                size: 50,
+              ),
+              Icon(
+                Icons.star_border,
+                color: Colors.amber,
+                size: 50,
+              ),
+              Icon(
+                Icons.star_border,
+                color: Colors.amber,
+                size: 50,
+              ),
+            ],
+          );
+        case 2:
+          return Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: const [
+              Icon(
+                Icons.star,
+                color: Colors.amber,
+                size: 50,
+              ),
+              Icon(
+                Icons.star,
+                color: Colors.amber,
+                size: 50,
+              ),
+              Icon(
+                Icons.star_border,
+                color: Colors.amber,
+                size: 50,
+              ),
+            ],
+          );
+        case 3:
+          return Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: const [
+              Icon(
+                Icons.star,
+                color: Colors.amber,
+                size: 50,
+              ),
+              Icon(
+                Icons.star,
+                color: Colors.amber,
+                size: 50,
+              ),
+              Icon(
+                Icons.star,
+                color: Colors.amber,
+                size: 50,
+              ),
+            ],
+          );
+        default:
+          return Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: const [
+              Icon(
+                Icons.star_border,
+                color: Colors.amber,
+                size: 50,
+              ),
+              Icon(
+                Icons.star_border,
+                color: Colors.amber,
+                size: 50,
+              ),
+              Icon(
+                Icons.star_border,
+                color: Colors.amber,
+                size: 50,
+              ),
+            ],
+          );
+      }
+    }
+
     QuizService quizService = QuizService();
     quizService.updateScoreAndRate(quizId, correctNumber, rate);
 
@@ -49,9 +139,11 @@ class ScoreSummary extends StatelessWidget {
       child: SingleChildScrollView(
         child: BlocBuilder<SettingBloc, SettingState>(
           builder: (context, state) {
+            // ignore: unused_local_variable
             Future<void>? audioFuture;
             if (state.effectIsOn) {
               final audioPlayer = AudioPlayer();
+              audioPlayer.setVolume(50);
               audioFuture =
                   audioPlayer.play(AssetSource('sounds/effect_3.mp3'));
             }
@@ -63,6 +155,7 @@ class ScoreSummary extends StatelessWidget {
               } else {}
 
               return Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   const SizedBox(
                     height: 20,
@@ -76,9 +169,9 @@ class ScoreSummary extends StatelessWidget {
                     'Your Score !',
                     style: Theme.of(context).textTheme.headlineSmall,
                   ),
-                  const SizedBox(
-                    height: 10,
-                  ),
+                  const SizedBox(height: 10),
+                  wrongWordList.isNotEmpty? _rateStar(rate): SizedBox(),
+                  const SizedBox(height: 10),
                   Container(
                     width: 180,
                     height: 120,
@@ -107,7 +200,7 @@ class ScoreSummary extends StatelessWidget {
                             builder: (context, state) {
                               return Container(
                                 width: double.infinity,
-                                height: 500,
+                                height: 450,
                                 decoration: BoxDecoration(
                                     color: state.themeSelected ==
                                             AppThemes.appThemeData[
@@ -136,7 +229,25 @@ class ScoreSummary extends StatelessWidget {
                             },
                           ),
                         )
-                      : Container(),
+                      : Container(
+                          height: 250,
+                          // color: Colors.amber,
+                          child: Center(
+                            child: Column(
+                              children: [
+                                _rateStar(rate),
+                                const SizedBox(height: 20,),
+                                Container(
+                                  height: 128,
+                                  child: Image(
+                                    image: ExactAssetImage(AppImages.trophy),
+                                    fit: BoxFit.fill,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
                   wrongWordList.isEmpty
                       ? const SizedBox(
                           height: 50,
@@ -146,20 +257,23 @@ class ScoreSummary extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      SizedBox(
-                        height: 50,
-                        width: 50,
-                        child: IconButton(
-                            onPressed: rebuildState,
-                            padding: const EdgeInsets.all(0.0),
-                            icon: const Icon(
-                              Icons.replay_circle_filled_sharp,
-                              size: 55,
-                            )),
-                      ),
-                      const SizedBox(
-                        width: 20,
-                      ),
+                      wrongWordList.isNotEmpty
+                          ? SizedBox(
+                              height: 50,
+                              width: 50,
+                              child: IconButton(
+                                  onPressed: rebuildState,
+                                  padding: const EdgeInsets.all(0.0),
+                                  icon: const Icon(
+                                    Icons.replay_circle_filled_sharp,
+                                    size: 55,
+                                  )))
+                          : SizedBox(),
+                      wrongWordList.isNotEmpty
+                          ? const SizedBox(
+                              width: 20,
+                            )
+                          : SizedBox(),
                       SizedBox(
                         height: 50,
                         child: ElevatedButton(

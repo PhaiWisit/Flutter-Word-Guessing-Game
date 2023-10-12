@@ -4,4 +4,5 @@ class AppImages {
   static const String coverDark = '${imagesPath}cover_dark.jpg';
   static const String coverColorFul = '${imagesPath}cover_colorful.jpg';
   static const String coverCute = '${imagesPath}cover_cute.jpg';
+  static const String trophy = '${imagesPath}trophy128.png';
 }

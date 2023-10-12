@@ -19,6 +19,14 @@ class StopMusic extends SettingEvent {
   List<Object> get props => [musicIsOn];
 }
 
+class PauseMusic extends SettingEvent{
+  
+}
+
+class ResumeMusic extends SettingEvent{
+  
+}
+
 class EffectOn extends SettingEvent {
   final bool effectIsOn = true;
   @override

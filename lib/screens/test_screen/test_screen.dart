@@ -6,7 +6,7 @@ import 'package:word_test/models/vocab_model.dart';
 import '../../blocs/blocs_export.dart';
 import '../../main.dart';
 import '../setting_screen/setting_screen.dart';
-import 'package:audioplayers/audioplayers.dart';
+// import 'package:audioplayers/audioplayers.dart';
 
 class TestScreen extends StatelessWidget {
   static const id = 'test_screen';
@@ -55,21 +55,21 @@ class TestScreen extends StatelessWidget {
     );
   }
 
-  final AudioPlayer _audioPlayer = AudioPlayer();
+  // final AudioPlayer _audioPlayer = AudioPlayer();
 
-  Future<void> _playAudioFromAssets() async {
-    await _audioPlayer.play(AssetSource('sounds/music.mp3'));
-  }
+  // Future<void> _playAudioFromAssets() async {
+  //   await _audioPlayer.play(AssetSource('sounds/music.mp3'));
+  // }
 
-  Future<void> _stopAudio() async {
-    await _audioPlayer.stop();
-  }
+  // Future<void> _stopAudio() async {
+  //   await _audioPlayer.stop();
+  // }
 
   @override
   Widget build(BuildContext context) {
     _test();
 
-    AudioPlayer player = AudioPlayer();
+    // AudioPlayer player = AudioPlayer();
 
     // dbHelper.database;
     // _queryAll();

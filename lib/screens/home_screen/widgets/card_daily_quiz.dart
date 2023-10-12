@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:word_test/screens/play_screen/play_screen.dart';
 import 'package:word_test/screens/play_screen/play_screen_random.dart';
 
 class CardDailyQuiz extends StatelessWidget {

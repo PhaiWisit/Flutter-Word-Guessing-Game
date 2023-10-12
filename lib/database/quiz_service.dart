@@ -9,7 +9,6 @@ class QuizService {
 
   Future<List<QuizModel>> getQuizList({required level}) async {
     Database db = await dbHelper.database;
-    // BlocProvider.of<LevelBloc>(context).add(ChooseLevel(level: level));
     List<Map<String, dynamic>> rows = await db.rawQuery('SELECT * FROM quizzes WHERE level_id = $level');
     String jsonString = json.encode(rows);
     List<QuizModel> quizList = quizModelFromJson(jsonString);
@@ -18,7 +17,6 @@ class QuizService {
 
   Future<int> updateScoreAndRate(int id,int score,int rate) async {
     Database db = await dbHelper.database;
-    // int id = row[columnId];
     return await db.rawUpdate('UPDATE quizzes SET quiz_score = $score , quiz_rate = $rate WHERE quiz_id = $id');
   }
 }

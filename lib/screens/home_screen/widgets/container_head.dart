@@ -1,7 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:word_test/screens/test_screen/test_screen.dart';
 import 'package:word_test/utils/app_images.dart';
 import '../../../blocs/blocs_export.dart';
 import '../../setting_screen/setting_screen.dart';
@@ -105,7 +104,7 @@ class RateUsButton extends StatelessWidget {
   _launchStoreReview() async {
     // Replace with your app's platform-specific App Store URLs
     const url =
-        'https://play.google.com/store/apps/details?id=com.facebook.katana';
+        'https://play.google.com/store/apps/details?id=com.hiyako.sabson';
 
     // ignore: deprecated_member_use
     if (await canLaunch(url)) {

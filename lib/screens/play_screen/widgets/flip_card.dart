@@ -67,12 +67,32 @@ class _FlipCardProviderState extends State<FlipCardProvider> {
                 borderRadius: const BorderRadius.all(Radius.circular(8.0)),
               ),
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
-                  Text(widget.vocabEng,
-                      style: Theme.of(context).textTheme.headlineLarge),
-                  Text('(${widget.vocabType}.)',
-                      style: Theme.of(context).textTheme.headlineSmall),
+                  Container(
+                    height: 20,
+                  ),
+                  Column(
+                    children: [
+                      Text(widget.vocabEng,
+                          style: Theme.of(context).textTheme.headlineLarge),
+                      Text('(${widget.vocabType}.)',
+                          style: Theme.of(context).textTheme.headlineSmall),
+                    ],
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Container(
+                          height: 20,
+                          // color: Colors.amber,
+                          child: Text('(ดูคำใบ้)',style: Theme.of(context).textTheme.titleSmall,),
+                        ),
+                      ],
+                    ),
+                  ),
                 ],
               ),
             ),

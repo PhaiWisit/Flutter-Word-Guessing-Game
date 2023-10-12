@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:audioplayers/audioplayers.dart';
 import 'package:equatable/equatable.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
@@ -15,6 +13,8 @@ class SettingBloc extends HydratedBloc<SettingEvent, SettingState> {
     on<OnThemeSelected>(_onThemeSelected);
     on<PlayMusic>(_onPlayMusic);
     on<StopMusic>(_onStopMusic);
+    on<PauseMusic>(_onPauseMusic);
+    on<ResumeMusic>(_onResumeMusic);
     on<EffectOn>(_onEffectOn);
     on<EffectOff>(_onEffectOff);
   }
@@ -32,6 +32,7 @@ class SettingBloc extends HydratedBloc<SettingEvent, SettingState> {
   Future<void> _onPlayMusic(PlayMusic event, Emitter<SettingState> emit) async {
     final themeSelected = state.themeSelected;
     _audioPlayer.setReleaseMode(ReleaseMode.loop);
+    _audioPlayer.setVolume(70);
     await _audioPlayer.play(AssetSource('sounds/music.mp3'));
     emit(SettingState(
         themeSelected: themeSelected,
@@ -49,6 +50,18 @@ class SettingBloc extends HydratedBloc<SettingEvent, SettingState> {
     ));
   }
 
+  void _onPauseMusic(PauseMusic event, Emitter<SettingState> emit) async {
+    if (state.musicIsOn) {
+      _audioPlayer.pause();
+    }
+  }
+
+  void _onResumeMusic(ResumeMusic event, Emitter<SettingState> emit) async {
+    if (state.musicIsOn) {
+      _audioPlayer.resume();
+    }
+  }
+
   void _onEffectOn(EffectOn event, Emitter<SettingState> emit) {
     emit(SettingState(
       themeSelected: state.themeSelected,
@@ -56,6 +69,7 @@ class SettingBloc extends HydratedBloc<SettingEvent, SettingState> {
       effectIsOn: event.effectIsOn,
     ));
   }
+
   void _onEffectOff(EffectOff event, Emitter<SettingState> emit) {
     emit(SettingState(
       themeSelected: state.themeSelected,

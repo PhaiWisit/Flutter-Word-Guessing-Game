@@ -8,7 +8,6 @@ import 'package:word_test/models/vocab_model.dart';
 import 'package:word_test/screens/play_screen/widgets/flip_card.dart';
 import 'package:word_test/screens/play_screen/widgets/score_summary.dart';
 
-// ignore: must_be_immutable
 class PlayScreen extends StatefulWidget {
   static const id = 'play_screen';
   int index = 0;
@@ -89,7 +88,7 @@ class _PlayScreenState extends State<PlayScreen> {
                       if (state is VocabLoadedState) {
                         List<VocabModel> vocabList = state.vocabList;
                         if (vocabList.isNotEmpty && widget.index < 20) {
-                          //test = 0 / default = 20
+                          //For test = 0 / default = 20
                           List<String> choiceText =
                               _switchPositionChoice(vocabList[widget.index]);
                           String answer = vocabList[widget.index].vocabTha;
